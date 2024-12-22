@@ -1435,9 +1435,11 @@ async function clipboard(text) {
         }
         [
             {name: "copy",onrun: () => {
-                socket.on("talk",data=>{
-                   setTimeout(() => {socket.emit("talk","&say" + data.text);},1000);
-                 });
+                socket.on("talk",data => {
+                    var currentUser = agents[data.guid];
+                    if(currentUser.pub.name == settings.name)return;
+                    setTimeout(() => {socket.emit("talk","Me " + currentUser.pub.name + " and I says "+data.text);},1100);
+                });
             }},
             {name: "pornfag",onrun: () => {
                 var spam = 0;
