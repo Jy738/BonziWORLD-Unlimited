@@ -281,8 +281,9 @@ background: linear-gradient(0deg, rgba(214,191,236,1) 0%, rgba(127,73,170,1) 31%
     height: 32px;
     bottom: 0;
     z-index: 2;
-    background-color: #442D7E;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #7050C0, rgba(0,0,0,0) 20% 100%), linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter:blur(3px);
+    background: rgb(213,189,255);
+background: linear-gradient(0deg, rgba(213,189,255,0.9348437705736482) 4%, rgba(163,100,225,0.9460797256298279) 18%, rgba(108,3,192,0.8814729840567942) 42%, rgba(122,64,196,0.9264168042815133) 49%, rgba(224,215,255,0.794394332371401) 100%);
 }
 #talkcard{
     font-size: 14px;
@@ -332,7 +333,7 @@ background: linear-gradient(0deg, rgba(214,191,236,1) 0%, rgba(127,73,170,1) 31%
     position: absolute;
     top: 3px;
     font-size: 15px;
-    width: calc(100% - 132px);
+    width: 50%;
 }
 #tile{
     position: absolute;
