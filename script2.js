@@ -16,6 +16,7 @@ function movestart(mouse, self){
     //Enable moving
     moving = window.cont == undefined;
 }
+//
 class msWindow{
     constructor(title, html, x, y, width, height, buttons){
         this.x = x;
