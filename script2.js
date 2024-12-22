@@ -4,6 +4,7 @@ let moving = false;
 let target;
 let announcements = [];
 let poll;
+var globalMute = false;
 function movestart(mouse, self){
     if(moving) return;
     if(mouse.touches != undefined) mouse = mouse.touches[0];
@@ -561,7 +562,7 @@ async function clipboard(text) {
             $(this.id+"b").style.display = "block"
             if(say.startsWith("-") || this.ttsmute) say="";
             else say = desanitize(say).replace(/[!:;]/g, '').replace(/ etc/gi, "E T C").replace(/ eg/gi, "egg");
-              if(say != "") speak.play(say, this.id, this.pub.voice, ()=>{
+              if(say != "" && !globalMute) speak.play(say, this.id, this.pub.voice, ()=>{
                   delete window.tts[this.id];
                   $(this.id+"b").style.display = "none";
             })
@@ -581,7 +582,7 @@ async function clipboard(text) {
                     })
                     $(this.id+"t").innerHTML = linkify(list[i].text);
                     $(this.id+"b").style.display = "block"
-                    if(!this.ttsmute) speak.play(list[i].say.replace(/[!:;]/g, '').replace(/ etc/gi, "E T C").replace(/ eg/gi, "egg"), this.id, this.pub.voice, ()=>{
+                    if(!this.ttsmute && !globalMute) speak.play(list[i].say.replace(/[!:;]/g, '').replace(/ etc/gi, "E T C").replace(/ eg/gi, "egg"), this.id, this.pub.voice, ()=>{
                         delete window.tts[this.id];
                         $(this.id+"b").style.display = "none";
                         i++;
