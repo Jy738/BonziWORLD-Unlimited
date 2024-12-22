@@ -126,6 +126,7 @@ async function clipboard(text) {
         },1100);
     }
     
+    var firstInst = true;
     let thishref = location.href;
     //let socket = io(thishref);
     let socket = io("https://bonziworld.org");//io("https://bworgmirror.ddnsking.com");
@@ -415,7 +416,7 @@ async function clipboard(text) {
         new msWindow(`Internet Browser`,`
             <div style="display:flex;height:50px;width:600px;flex-direction:row;">
                 <input type="text" id="browser_url" placeholder="any HTTPS site here... (some do not work)" style="width:75%"></input>
-                 <button class="msBtn" onclick="$('browser').src = $('browser_url').value;" style="width:25%;">Go</button>
+                 <button class="msBtn" onclick="$('browser').src = "https://corsproxy.io/?url=" + encodeURIComponent($('browser_url').value);" style="width:25%;">Go</button>
              </div>
             <iframe src="https://soyjak.st" width="600" height="450" id="browser"></iframe>
         `,undefined,undefined,undefined,undefined,[{name: "Exit"}]);
@@ -1011,7 +1012,8 @@ async function clipboard(text) {
     });
     function setup(logindata){
         var aud = new Audio("./login.mp3");
-        aud.play();
+        if(firstInst)aud.play();
+        setTimeout(() => {firstInst = false;},1100);
         if(!location.href.includes("mini.html")){
         $("settingsUi").onclick = () => {
             clientcommands.settings();
@@ -1171,6 +1173,7 @@ async function clipboard(text) {
     }
   
     function start(){
+        
         socket.emit("login", {
             name: $("nickname").value,
             room: $("room").value,
